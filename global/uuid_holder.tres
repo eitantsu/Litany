@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://global/uuid_holder.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+uuids = [ "399a0730-a491-4a44-8490-ac6d4d9fcdad", "59faf736-977f-409f-a7ca-1300a1007333", "c8513531-2184-4eed-97b1-94621c0e8434", "d8513531-2184-4eed-97b1-94621c0e8434", "e8513531-2184-4eed-97b1-94621c0e8434", "045a0e14-2bab-4cb1-a22e-1f1bf79b9deb", "33e81d97-04ec-494e-8e7a-70fb1798e3c8", "074a202e-a90f-40b9-bba6-144cead14095", "1814466f-1d1b-4a91-b80e-7227d76c38ff", "e33750b3-5b1f-47bb-aeaa-fe9e5543ea0f", "100dc6dc-caa8-4810-ae5e-37631dca68dc", "862cde79-2d2d-4a82-8ce9-4745b6ecf9c8", "767d0173-f264-4e3f-aeb9-9693552f65f6", "4aa638ed-4ff0-40b3-a17d-7d957b7be799", "ed438f01-99ad-4ff5-a633-b9824d89d1b0", "a34598a1-278d-455f-b5ac-e40ff25b2ed0", "68067a54-03be-4db3-a8f8-9634d85631a1", "cb263361-4685-4df7-b1ad-72d7c24169a3", "f86045ca-9116-4777-9b9f-4cfded566781", "4f3c82a1-c0d4-4b2f-986e-3250dee2af74", "28b223ca-b496-41bf-9a2b-df9acf9ecab5", "ce1a00ce-fd15-4549-a40d-f5bb456295ae", "51016b70-b608-47ab-b2ee-38a4122c7bea", "de5f3458-8fbb-4157-8a7a-2311668aa60a", "8fd65514-2de0-4e10-bf71-a20cb0342c03", "db747ab7-c582-47d3-a8a2-6a4bc25500e9", "c457cb82-7759-4455-96c7-7b60610191b5" ]

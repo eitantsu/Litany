@@ -1,0 +1,129 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://enemy/tf_player_detected.gd" type="Script" id=1]
+[ext_resource path="res://behaviour_tree/inverter.gd" type="Script" id=2]
+[ext_resource path="res://behaviour_tree/behaviour_tree.gd" type="Script" id=3]
+[ext_resource path="res://behaviour_tree/sequence.gd" type="Script" id=4]
+[ext_resource path="res://enemy/tf_move_to_point.gd" type="Script" id=5]
+[ext_resource path="res://enemy/tf_calculate_next_point.gd" type="Script" id=6]
+[ext_resource path="res://enemy/tf_move_rand.gd" type="Script" id=7]
+[ext_resource path="res://behaviour_tree/selector.gd" type="Script" id=8]
+[ext_resource path="res://enemy/tf_choose_random.gd" type="Script" id=9]
+[ext_resource path="res://enemy/sdsd.gd" type="Script" id=10]
+
+[node name="BehaviourTree" type="Label"]
+margin_right = 92.0
+margin_bottom = 14.0
+text = "BehaviourTree"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector" type="Label" parent="."]
+margin_left = 19.0
+margin_top = 96.0
+margin_right = 71.0
+margin_bottom = 110.0
+text = "Selector"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sequence" type="Label" parent="Selector"]
+margin_left = -99.0
+margin_top = 53.0
+margin_right = -37.0
+margin_bottom = 67.0
+text = "Sequence"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inverter" type="Label" parent="Selector/Sequence"]
+margin_left = -49.0
+margin_top = 39.0
+margin_right = 2.0
+margin_bottom = 53.0
+text = "Inverter"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tf_player_detected" type="Label" parent="Selector/Sequence/Inverter"]
+margin_left = -60.0
+margin_top = 44.0
+margin_right = 57.0
+margin_bottom = 58.0
+text = "tf_player_detected"
+script = ExtResource( 1 )
+
+[node name="tf_choose_random" type="Label" parent="Selector/Sequence"]
+margin_left = -22.0
+margin_top = 144.0
+margin_right = 94.0
+margin_bottom = 158.0
+text = "tf_choose_random"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tf_move_rand" type="Label" parent="Selector/Sequence"]
+margin_left = 142.0
+margin_top = 136.0
+margin_right = 227.0
+margin_bottom = 150.0
+text = "tf_move_rand"
+script = ExtResource( 7 )
+
+[node name="Sequence2" type="Label" parent="Selector"]
+margin_left = 65.0
+margin_top = 53.0
+margin_right = 135.0
+margin_bottom = 67.0
+text = "Sequence2"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tf_player_detected" type="Label" parent="Selector/Sequence2"]
+margin_left = -24.0
+margin_top = 59.0
+margin_right = 93.0
+margin_bottom = 73.0
+text = "tf_player_detected"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tf_calculate_next_point" type="Label" parent="Selector/Sequence2"]
+margin_left = 121.0
+margin_top = 91.0
+margin_right = 266.0
+margin_bottom = 105.0
+text = "tf_calculate_next_point"
+script = ExtResource( 6 )
+
+[node name="tf_move_to_point" type="Label" parent="Selector/Sequence2"]
+margin_left = 268.0
+margin_top = 49.0
+margin_right = 377.0
+margin_bottom = 63.0
+text = "tf_move_to_point"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Selector/Sequence2"]
+margin_left = 241.0
+margin_top = 142.0
+margin_right = 281.0
+margin_bottom = 156.0
+script = ExtResource( 10 )

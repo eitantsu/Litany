@@ -1,0 +1,153 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://menus/death_menu.gd" type="Script" id=1]
+[ext_resource path="res://common.theme" type="Theme" id=2]
+[ext_resource path="res://menus/SWAV_17.swav.wav" type="AudioStream" id=3]
+
+[node name="DeathMenu" type="Control"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+load_button = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Load")
+popup = NodePath("CenterContainer/ConfirmationDialog")
+main_menu_scene_path = "res://menus/main_menu.tscn"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -96.0
+margin_right = 128.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 46.0
+margin_top = 40.0
+margin_right = 210.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 50, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 164.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer4"]
+margin_right = 164.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+size_flags_horizontal = 3
+theme = ExtResource( 2 )
+text = "You Died..."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 164.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Load" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 164.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 50, 25 )
+focus_neighbour_bottom = NodePath("../../HBoxContainer2/QuitMenu")
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 2 )
+text = "Load an earlier save?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 58.0
+margin_right = 164.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="QuitMenu" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 6.0
+margin_right = 157.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 50, 25 )
+focus_neighbour_top = NodePath("../../HBoxContainer/Load")
+focus_neighbour_bottom = NodePath("../../HBoxContainer3/QuitGame")
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 2 )
+text = "Quit to main menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 164.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="QuitGame" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 25.0
+margin_right = 139.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 50, 25 )
+focus_neighbour_top = NodePath("../../HBoxContainer2/QuitMenu")
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 2 )
+text = "Quit the game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="CenterContainer"]
+margin_left = 28.0
+margin_top = 51.0
+margin_right = 228.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+dialog_text = "Are you sure you want to exit the game?"
+dialog_autowrap = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -30.0
+bus = "Global"
+
+[connection signal="visibility_changed" from="." to="." method="_on_DeathMenu_visibility_changed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Load" to="." method="_on_Load_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/QuitMenu" to="." method="_on_QuitMenu_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/QuitGame" to="." method="_on_QuitGame_pressed"]
+[connection signal="about_to_show" from="CenterContainer/ConfirmationDialog" to="." method="_on_ConfirmationDialog_about_to_show"]
+[connection signal="confirmed" from="CenterContainer/ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
+[connection signal="popup_hide" from="CenterContainer/ConfirmationDialog" to="." method="_on_ConfirmationDialog_popup_hide"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://minimap/draw_map.gd" type="Script" id=1]
+[ext_resource path="res://global/player_runtime_data.tres" type="Resource" id=2]
+[ext_resource path="res://minimap/intr.png" type="Texture" id=3]
+[ext_resource path="res://minimap/door.png" type="Texture" id=4]
+[ext_resource path="res://minimap/player.png" type="Texture" id=5]
+[ext_resource path="res://minimap/room.png" type="Texture" id=6]
+[ext_resource path="res://minimap/npc.png" type="Texture" id=7]
+[ext_resource path="res://minimap/enemy.png" type="Texture" id=8]
+
+[node name="Minimap" type="ViewportContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 256, 192 )
+transparent_bg = true
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="DrawMap" type="Node2D" parent="Viewport"]
+script = ExtResource( 1 )
+player_runtime_data = ExtResource( 2 )
+player_t = ExtResource( 5 )
+intr = ExtResource( 3 )
+room_t = ExtResource( 6 )
+door = ExtResource( 4 )
+npc = ExtResource( 7 )
+enemy = ExtResource( 8 )
+
+[node name="PlayerPosition" type="Position2D" parent="Viewport/DrawMap"]
+
+[node name="Camera2D" type="Camera2D" parent="Viewport/DrawMap/PlayerPosition"]
+current = true
+zoom = Vector2( 5, 8 )

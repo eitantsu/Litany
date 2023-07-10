@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://other/scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://music/34.mp3" type="AudioStream" id=2]
+[ext_resource path="res://enemy/boss.tscn" type="PackedScene" id=3]
+[ext_resource path="res://other/scene_change_zone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/boss_room.gd" type="Script" id=5]
+[ext_resource path="res://minimap/room.tscn" type="PackedScene" id=6]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( -673, 133, -672, 4, 156, 8, 154, 135 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -673, 133, -672, 4, 156, 8, 154, 135 ) ]
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -744, 0, 0, 0, 0, 0, 240, 0, 0, 0, 0, 0, 240, 160, 0, 0, 0, 0, -768, 160, 0, 0, 0, 0, -768, 0, 0, 0, 0, 0, -744, 0 )
+}
+
+[node name="Scene" instance=ExtResource( 1 )]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NavAir" index="0"]
+navpoly = SubResource( 1 )
+
+[node name="Boss" parent="NavAir" index="1" instance=ExtResource( 3 )]
+position = Vector2( -252, 84 )
+
+[node name="Up" parent="NavAir/Boss" index="10"]
+position = Vector2( -4, -60 )
+
+[node name="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource( 2 )
+volume_db = -30.0
+
+[node name="TileMap" parent="." index="5"]
+tile_data = PoolIntArray( 65443, 70, 0 )
+
+[node name="SceneChangeZone" parent="." index="6" instance=ExtResource( 4 )]
+position = Vector2( 199, 121 )
+scene_path = "res://levels/level5.tscn"
+other_id = 1
+facing = -1.0
+
+[node name="PlayerPos" parent="SceneChangeZone" index="1"]
+position = Vector2( -78, -35 )
+
+[node name="SceneChangeZone2" parent="." index="7" instance=ExtResource( 4 )]
+position = Vector2( -727, 121 )
+scene_path = "res://levels/level6.tscn"
+my_id = 1
+facing = 1.0
+
+[node name="PlayerPos" parent="SceneChangeZone2" index="1"]
+position = Vector2( 71, -29 )
+
+[node name="Node2D" type="Node2D" parent="." index="8"]
+script = ExtResource( 5 )
+door1 = NodePath("../SceneChangeZone/CollisionShape2D")
+door2 = NodePath("../SceneChangeZone2/CollisionShape2D")
+
+[node name="Room" parent="." index="9" instance=ExtResource( 6 )]
+visible = false
+curve = SubResource( 2 )
+
+[editable path="NavAir/Boss"]
+[editable path="SceneChangeZone"]
+[editable path="SceneChangeZone2"]

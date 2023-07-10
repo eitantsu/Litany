@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://inventory/item.gd" type="Script" id=1]
+[ext_resource path="res://common.theme" type="Theme" id=2]
+[ext_resource path="res://global/player_runtime_data.tres" type="Resource" id=3]
+[ext_resource path="res://global/player_inventory.tres" type="Resource" id=4]
+[ext_resource path="res://fonts/Alice-Regular.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+font_data = ExtResource( 5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 1.5 )
+
+[node name="Item" type="Area2D" groups=["Persist", "points_of_interest"]]
+z_index = 1
+collision_layer = 4
+collision_mask = 5
+script = ExtResource( 1 )
+player_runtime_data = ExtResource( 3 )
+inv = ExtResource( 4 )
+inv_full_message = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = -20.0
+margin_top = -39.0
+margin_right = 37.0
+margin_bottom = -25.0
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 3 )
+text = "Inventory is full"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DetectGround" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectGround"]
+position = Vector2( 0, 8.5 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Item_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Item_body_exited"]

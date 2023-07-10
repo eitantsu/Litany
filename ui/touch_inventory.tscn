@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/bitmask.png" type="BitMap" id=1]
+[ext_resource path="res://ui/touch_inv.png" type="Texture" id=2]
+[ext_resource path="res://ui/touch_button.gd" type="Script" id=3]
+
+[node name="TouchInventory" type="TouchScreenButton"]
+normal = ExtResource( 2 )
+bitmask = ExtResource( 1 )
+action = "open_inventory"
+script = ExtResource( 3 )

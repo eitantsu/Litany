@@ -1,0 +1,158 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://other/damager.gd" type="Script" id=1]
+[ext_resource path="res://enemy/tracker_tree.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemy/tracker_flyer.gd" type="Script" id=8]
+[ext_resource path="res://global/player_runtime_data.tres" type="Resource" id=9]
+[ext_resource path="res://enemy/animations/spectre.png" type="Texture" id=13]
+[ext_resource path="res://enemy/audio/STRM_E_EN_KENTA_V02.wav" type="AudioStream" id=14]
+[ext_resource path="res://enemy/audio/STRM_E_EN_KENTA_V01.wav" type="AudioStream" id=15]
+[ext_resource path="res://ui/hp_over.png" type="Texture" id=16]
+[ext_resource path="res://ui/hp_under.png" type="Texture" id=17]
+[ext_resource path="res://ui/hp.png" type="Texture" id=18]
+[ext_resource path="res://inventory/item.tscn" type="PackedScene" id=19]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 11.0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 38, 27 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 11, 16 )
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "default"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 6.0
+height = 4.0
+
+[node name="TrackerFlyer" type="KinematicBody2D" groups=["Persist", "enemies"]]
+z_index = -1
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 8 )
+hp_bar = NodePath("HPBar")
+damage_area = NodePath("DamageArea")
+distance_area = NodePath("PlayerDistanceArea")
+timer = NodePath("Timer")
+item_scene = ExtResource( 19 )
+player_data = ExtResource( 9 )
+anim_p = NodePath("AnimationPlayer")
+damage_on_collsiion = true
+can_track = true
+damager = NodePath("Damager")
+top = NodePath("TopJumpArea")
+hit = [ ExtResource( 15 ) ]
+dead = [ ExtResource( 14 ) ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="BehaviourTree" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="HPBar" type="TextureProgress" parent="."]
+margin_left = -25.0
+margin_top = -35.0
+margin_right = 25.0
+margin_bottom = -25.0
+value = 100.0
+texture_under = ExtResource( 17 )
+texture_over = ExtResource( 16 )
+texture_progress = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 17
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource( 2 )
+
+[node name="PlayerDistanceArea" type="Area2D" parent="."]
+collision_layer = 32
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDistanceArea"]
+position = Vector2( 2, 0 )
+shape = SubResource( 5 )
+
+[node name="Damager" type="Area2D" parent="."]
+collision_layer = 16
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damager"]
+position = Vector2( 0, 5 )
+shape = SubResource( 8 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/RESET = SubResource( 6 )
+anims/default = SubResource( 7 )
+
+[node name="Position2D" type="Position2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Position2D"]
+texture = ExtResource( 13 )
+hframes = 4
+
+[node name="TopJumpArea" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopJumpArea"]
+position = Vector2( 0, -17 )
+rotation = 1.5708
+shape = SubResource( 9 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -27.0
+bus = "Global"
+
+[connection signal="body_entered" from="TopJumpArea" to="." method="_on_TopJumpArea_body_entered"]

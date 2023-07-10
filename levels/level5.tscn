@@ -1,0 +1,161 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://other/scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://npc/npc.tscn" type="PackedScene" id=2]
+[ext_resource path="res://npc/npc4.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://inventory/item.tscn" type="PackedScene" id=4]
+[ext_resource path="res://inventory/items/armour_2.tres" type="Resource" id=5]
+[ext_resource path="res://enemy/smart_enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://inventory/items/instant_hp_2.tres" type="Resource" id=7]
+[ext_resource path="res://inventory/items/strength_potion.tres" type="Resource" id=8]
+[ext_resource path="res://enemy/tracker_flyer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://inventory/items/instant_hp_3.tres" type="Resource" id=10]
+[ext_resource path="res://inventory/items/instant_hp_1.tres" type="Resource" id=11]
+[ext_resource path="res://inventory/items/defense_potion.tres" type="Resource" id=12]
+[ext_resource path="res://inventory/items/large_hp.tres" type="Resource" id=13]
+[ext_resource path="res://inventory/items/medium_hp.tres" type="Resource" id=14]
+[ext_resource path="res://other/scene_change_zone.tscn" type="PackedScene" id=15]
+[ext_resource path="res://minimap/room.tscn" type="PackedScene" id=16]
+[ext_resource path="res://music/08.mp3" type="AudioStream" id=17]
+[ext_resource path="res://npc/dialogue5.tres" type="Resource" id=18]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 1323, -235, 1325, -167, 1110, -171, 593, -238, 1061, -138, 768, -173, 594, -170, 816, -141, 632, 495, 636, 382, 1177, 380, 1176, 491 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ), PoolIntArray( 5, 6, 3 ), PoolIntArray( 5, 4, 7 ), PoolIntArray( 8, 9, 10, 11 ) ]
+outlines = [ PoolVector2Array( 594, -170, 593, -238, 1323, -235, 1325, -167, 1110, -171, 1061, -138, 816, -141, 768, -173 ), PoolVector2Array( 1176, 491, 1177, 380, 636, 382, 632, 495 ) ]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 1328, -32, 1339, 85, 1286, 84, 1253, 52, 922, -33, 912, 53, 860, 21, 693, 20, 695, -66, 921, -64, 904, 54, 848, 211, 791, 212, 803, 124, 882, 178, 1272, 110, 1399, 112, 1397, 234, 1315, 195, 1286, 239, 1281, 212, 1312, 206, 1269, 181, 897, 179, 804, 93, 1270, 93, 1270, 195, 556, 358, 1258, 357, 1250, 451, 1190, 493, 1059, 492, 612, 494, 548, 454 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5, 6 ), PoolIntArray( 6, 7, 8, 9, 4 ), PoolIntArray( 6, 5, 10 ), PoolIntArray( 11, 12, 13, 14 ), PoolIntArray( 15, 16, 17, 18 ), PoolIntArray( 19, 20, 21, 17 ), PoolIntArray( 22, 23, 14, 13, 24, 25, 15 ), PoolIntArray( 17, 21, 18 ), PoolIntArray( 22, 15, 18, 26 ), PoolIntArray( 27, 28, 29, 30, 31 ), PoolIntArray( 27, 31, 32, 33 ) ]
+outlines = [ PoolVector2Array( 1339, 85, 1328, -32, 922, -33, 921, -64, 695, -66, 693, 20, 860, 21, 904, 54, 912, 53, 1253, 52, 1286, 84 ), PoolVector2Array( 897, 179, 882, 178, 848, 211, 791, 212, 803, 124, 804, 93, 1270, 93, 1272, 110, 1399, 112, 1397, 234, 1286, 239, 1281, 212, 1312, 206, 1315, 195, 1270, 195, 1269, 181 ), PoolVector2Array( 612, 494, 548, 454, 556, 358, 1258, 357, 1250, 451, 1190, 493, 1059, 492 ) ]
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 48, 128, 0, 0, 0, 0, 304, 128, 0, 0, 0, 0, 304, 88, 0, 0, 0, 0, 416, 88, 0, 0, 0, 0, 416, 64, 0, 0, 0, 0, 488, 64, 0, 0, 0, 0, 488, 72, 0, 0, 0, 0, 536, 72, 0, 0, 0, 0, 536, -72, 0, 0, 0, 0, 488, -72, 0, 0, 0, 0, 488, -8, 0, 0, 0, 0, 440, -8, 0, 0, 0, 0, 440, -24, 0, 0, 0, 0, 416, -24, 0, 0, 0, 0, 416, -40, 0, 0, 0, 0, 440, -40, 0, 0, 0, 0, 440, -120, 0, 0, 0, 0, 416, -120, 0, 0, 0, 0, 416, -136, 0, 0, 0, 0, 440, -136, 0, 0, 0, 0, 440, -200, 0, 0, 0, 0, 424, -200, 0, 0, 0, 0, 424, -216, 0, 0, 0, 0, 440, -216, 0, 0, 0, 0, 440, -264, 0, 0, 0, 0, 472, -264, 0, 0, 0, 0, 472, -128, 0, 0, 0, 0, 544, -128, 0, 0, 0, 0, 544, -168, 0, 0, 0, 0, 784, -168, 0, 0, 0, 0, 824, -136, 0, 0, 0, 0, 1064, -136, 0, 0, 0, 0, 1112, -176, 0, 0, 0, 0, 1376, -176, 0, 0, 0, 0, 1376, -160, 0, 0, 0, 0, 1344, -160, 0, 0, 0, 0, 1344, -72, 0, 0, 0, 0, 1376, -72, 0, 0, 0, 0, 1376, -56, 0, 0, 0, 0, 1360, -56, 0, 0, 0, 0, 1360, -16, 0, 0, 0, 0, 1392, -16, 0, 0, 0, 0, 1392, 0, 0, 0, 0, 0, 1320, 0, 0, 0, 0, 0, 1320, -64, 0, 0, 0, 0, 1272, -64, 0, 0, 0, 0, 1272, -32, 0, 0, 0, 0, 920, -32, 0, 0, 0, 0, 920, -64, 0, 0, 0, 0, 696, -64, 0, 0, 0, 0, 696, 64, 0, 0, 0, 0, 712, 64, 0, 0, 0, 0, 712, 80, 0, 0, 0, 0, 696, 80, 0, 0, 0, 0, 696, 168, 0, 0, 0, 0, 728, 168, 0, 0, 0, 0, 728, 176, 0, 0, 0, 0, 688, 176, 0, 0, 0, 0, 688, 216, 0, 0, 0, 0, 832, 216, 0, 0, 0, 0, 888, 184, 0, 0, 0, 0, 1264, 184, 0, 0, 0, 0, 1272, 192, 0, 0, 0, 0, 1312, 192, 0, 0, 0, 0, 1312, 208, 0, 0, 0, 0, 1280, 208, 0, 0, 0, 0, 1280, 296, 0, 0, 0, 0, 1312, 296, 0, 0, 0, 0, 1312, 312, 0, 0, 0, 0, 1296, 312, 0, 0, 0, 0, 1296, 352, 0, 0, 0, 0, 1328, 352, 0, 0, 0, 0, 1328, 368, 0, 0, 0, 0, 1280, 368, 0, 0, 0, 0, 1280, 400, 0, 0, 0, 0, 1248, 400, 0, 0, 0, 0, 1248, 360, 0, 0, 0, 0, 496, 360, 0, 0, 0, 0, 496, 456, 0, 0, 0, 0, 552, 456, 0, 0, 0, 0, 608, 496, 0, 0, 0, 0, 1184, 496, 0, 0, 0, 0, 1240, 456, 0, 0, 0, 0, 1400, 456, 0, 0, 0, 0, 1400, 416, 0, 0, 0, 0, 1360, 416, 0, 0, 0, 0, 1360, 408, 0, 0, 0, 0, 1392, 408, 0, 0, 0, 0, 1392, 320, 0, 0, 0, 0, 1360, 320, 0, 0, 0, 0, 1360, 304, 0, 0, 0, 0, 1392, 304, 0, 0, 0, 0, 1392, 248, 0, 0, 0, 0, 1360, 248, 0, 0, 0, 0, 1360, 232, 0, 0, 0, 0, 1392, 232, 0, 0, 0, 0, 1392, 112, 0, 0, 0, 0, 1272, 112, 0, 0, 0, 0, 1272, 96, 0, 0, 0, 0, 808, 96, 0, 0, 0, 0, 808, 128, 0, 0, 0, 0, 760, 128, 0, 0, 0, 0, 760, 112, 0, 0, 0, 0, 792, 112, 0, 0, 0, 0, 792, 32, 0, 0, 0, 0, 760, 32, 0, 0, 0, 0, 760, 16, 0, 0, 0, 0, 864, 16, 0, 0, 0, 0, 912, 56, 0, 0, 0, 0, 1248, 56, 0, 0, 0, 0, 1296, 88, 0, 0, 0, 0, 1464, 88, 0, 0, 0, 0, 1464, 48, 0, 0, 0, 0, 1424, 48, 0, 0, 0, 0, 1424, 40, 0, 0, 0, 0, 1456, 40, 0, 0, 0, 0, 1456, -48, 0, 0, 0, 0, 1424, -48, 0, 0, 0, 0, 1424, -64, 0, 0, 0, 0, 1456, -64, 0, 0, 0, 0, 1456, -120, 0, 0, 0, 0, 1424, -120, 0, 0, 0, 0, 1424, -136, 0, 0, 0, 0, 1456, -136, 0, 0, 0, 0, 1456, -256, 0, 0, 0, 0, 1336, -256, 0, 0, 0, 0, 1336, -240, 0, 0, 0, 0, 552, -240, 0, 0, 0, 0, 552, -224, 0, 0, 0, 0, 504, -224, 0, 0, 0, 0, 504, -240, 0, 0, 0, 0, 536, -240, 0, 0, 0, 0, 536, -312, 0, 0, 0, 0, 344, -312, 0, 0, 0, 0, 344, -264, 0, 0, 0, 0, 392, -264, 0, 0, 0, 0, 392, -248, 0, 0, 0, 0, 344, -248, 0, 0, 0, 0, 344, -224, 0, 0, 0, 0, 280, -224, 0, 0, 0, 0, 280, -264, 0, 0, 0, 0, 96, -264, 0, 0, 0, 0, 96, -152, 0, 0, 0, 0, 144, -128, 0, 0, 0, 0, 216, -128, 0, 0, 0, 0, 272, -176, 0, 0, 0, 0, 392, -176, 0, 0, 0, 0, 392, -168, 0, 0, 0, 0, 360, -168, 0, 0, 0, 0, 360, -88, 0, 0, 0, 0, 392, -88, 0, 0, 0, 0, 392, -80, 0, 0, 0, 0, 360, -80, 0, 0, 0, 0, 360, 8, 0, 0, 0, 0, 392, 8, 0, 0, 0, 0, 392, 16, 0, 0, 0, 0, 360, 16, 0, 0, 0, 0, 360, 32, 0, 0, 0, 0, 296, 32, 0, 0, 0, 0, 296, -8, 0, 0, 0, 0, 104, -8, 0, 0, 0, 0, 104, 64, 0, 0, 0, 0, 48, 64, 0, 0, 0, 0, 48, 128 )
+}
+
+[node name="Scene" instance=ExtResource( 1 )]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NavGround" index="0"]
+visible = false
+navpoly = SubResource( 1 )
+
+[node name="SmartEnemy" parent="NavGround" index="1" instance=ExtResource( 6 )]
+position = Vector2( 938, -169 )
+uuid = "68067a54-03be-4db3-a8f8-9634d85631a1"
+hp = 90.0
+damage = 45.0
+dropped_item = ExtResource( 7 )
+
+[node name="Left" parent="NavGround/SmartEnemy" index="6"]
+position = Vector2( -88, 0 )
+
+[node name="Right" parent="NavGround/SmartEnemy" index="7"]
+position = Vector2( 119, -1 )
+
+[node name="SmartEnemy2" parent="NavGround" index="2" instance=ExtResource( 6 )]
+position = Vector2( 1089, 463 )
+uuid = "51016b70-b608-47ab-b2ee-38a4122c7bea"
+hp = 90.0
+damage = 50.0
+dropped_item = ExtResource( 7 )
+
+[node name="SmartEnemy3" parent="NavGround" index="3" instance=ExtResource( 6 )]
+position = Vector2( 720, 463 )
+uuid = "de5f3458-8fbb-4157-8a7a-2311668aa60a"
+hp = 90.0
+damage = 50.0
+dropped_item = ExtResource( 13 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NavAir" index="0"]
+visible = false
+navpoly = SubResource( 2 )
+
+[node name="TrackerFlyer" parent="NavAir" index="1" instance=ExtResource( 9 )]
+position = Vector2( 1079, 15 )
+uuid = "f86045ca-9116-4777-9b9f-4cfded566781"
+hp = 60.0
+damage = 50.0
+dropped_item = ExtResource( 10 )
+
+[node name="TrackerFlyer2" parent="NavAir" index="2" instance=ExtResource( 9 )]
+position = Vector2( 1075, 143 )
+uuid = "4f3c82a1-c0d4-4b2f-986e-3250dee2af74"
+hp = 60.0
+damage = 50.0
+dropped_item = ExtResource( 11 )
+
+[node name="TrackerFlyer3" parent="NavAir" index="3" instance=ExtResource( 9 )]
+position = Vector2( 925, 447 )
+uuid = "ce1a00ce-fd15-4549-a40d-f5bb456295ae"
+hp = 90.0
+damage = 50.0
+dropped_item = ExtResource( 11 )
+
+[node name="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource( 17 )
+volume_db = -30.0
+
+[node name="TileMap" parent="." index="5"]
+tile_data = PoolIntArray( -2686937, 1, 0, -2293751, 536870938, 0, -2228057, 536870931, 0, -2097083, 20, 0, -2097034, 536870932, 0, -655275, 536870929, 0, -196599, 536870924, 0, 786517, 536870930, 0, 786591, 536870931, 0, 2818112, 36, 0 )
+
+[node name="NPC" parent="." index="6" instance=ExtResource( 2 )]
+position = Vector2( 156, -128 )
+scale = Vector2( -1, 1 )
+dialogue = ExtResource( 18 )
+
+[node name="AnimatedSprite" parent="NPC/Position2D" index="0"]
+frames = ExtResource( 3 )
+frame = 2
+
+[node name="Item" parent="." index="7" instance=ExtResource( 4 )]
+position = Vector2( 506, -141 )
+item_resource = ExtResource( 5 )
+uuid = "a34598a1-278d-455f-b5ac-e40ff25b2ed0"
+
+[node name="Item2" parent="." index="8" instance=ExtResource( 4 )]
+position = Vector2( 519, 51 )
+item_resource = ExtResource( 8 )
+uuid = "cb263361-4685-4df7-b1ad-72d7c24169a3"
+
+[node name="Item3" parent="." index="9" instance=ExtResource( 4 )]
+position = Vector2( 775, 195 )
+item_resource = ExtResource( 12 )
+uuid = "28b223ca-b496-41bf-9a2b-df9acf9ecab5"
+
+[node name="Item4" parent="." index="10" instance=ExtResource( 4 )]
+position = Vector2( 619, 475 )
+item_resource = ExtResource( 13 )
+uuid = "db747ab7-c582-47d3-a8a2-6a4bc25500e9"
+
+[node name="Item5" parent="." index="11" instance=ExtResource( 4 )]
+position = Vector2( 640, 475 )
+item_resource = ExtResource( 14 )
+uuid = "8fd65514-2de0-4e10-bf71-a20cb0342c03"
+
+[node name="SceneChangeZone" parent="." index="12" instance=ExtResource( 15 )]
+position = Vector2( 85, 98 )
+scene_path = "res://levels/level4.tscn"
+other_id = 1
+facing = 1.0
+
+[node name="PlayerPos" parent="SceneChangeZone" index="1"]
+position = Vector2( 34, -5 )
+
+[node name="SceneChangeZone2" parent="." index="13" instance=ExtResource( 15 )]
+position = Vector2( 531, 424 )
+scene_path = "res://levels/boss_room.tscn"
+my_id = 1
+facing = 1.0
+
+[node name="PlayerPos" parent="SceneChangeZone2" index="1"]
+position = Vector2( 94, 23 )
+
+[node name="Room" parent="." index="14" instance=ExtResource( 16 )]
+visible = false
+curve = SubResource( 3 )
+
+[editable path="NavGround/SmartEnemy"]
+[editable path="NPC"]
+[editable path="SceneChangeZone"]
+[editable path="SceneChangeZone2"]

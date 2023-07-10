@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://inventory/sprites/eq3_00.png" type="Texture" id=1]
+[ext_resource path="res://inventory/item_resource.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+iname = "acc +3d"
+texture = ExtResource( 1 )
+type = 0
+properties = {
+"defense": 3.0,
+"eq_type": 0
+}

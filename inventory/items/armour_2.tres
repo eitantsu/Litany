@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://inventory/item_resource.gd" type="Script" id=1]
+[ext_resource path="res://inventory/sprites/eq1_56.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+iname = "arm +2s/+4d"
+texture = ExtResource( 2 )
+type = 0
+properties = {
+"defense": 4.0,
+"eq_type": 2,
+"strength": 2.0
+}

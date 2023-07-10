@@ -1,0 +1,152 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://other/scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://other/scene_change_zone.tscn" type="PackedScene" id=2]
+[ext_resource path="res://inventory/items/combined_accessory_4.tres" type="Resource" id=3]
+[ext_resource path="res://inventory/items/boots_3.tres" type="Resource" id=4]
+[ext_resource path="res://inventory/items/helmet_2.tres" type="Resource" id=5]
+[ext_resource path="res://inventory/items/defense_potion.tres" type="Resource" id=6]
+[ext_resource path="res://inventory/items/small_hp.tres" type="Resource" id=7]
+[ext_resource path="res://inventory/items/helmet_3.tres" type="Resource" id=8]
+[ext_resource path="res://inventory/item.tscn" type="PackedScene" id=9]
+[ext_resource path="res://enemy/simple_patroller.tscn" type="PackedScene" id=10]
+[ext_resource path="res://enemy/tracker_flyer.tscn" type="PackedScene" id=11]
+[ext_resource path="res://npc/npc3.tres" type="SpriteFrames" id=12]
+[ext_resource path="res://npc/npc.tscn" type="PackedScene" id=13]
+[ext_resource path="res://npc/dialogue3.tres" type="Resource" id=14]
+[ext_resource path="res://inventory/items/strength_potion.tres" type="Resource" id=15]
+[ext_resource path="res://enemy/smart_enemy.tscn" type="PackedScene" id=16]
+[ext_resource path="res://music/17.mp3" type="AudioStream" id=17]
+[ext_resource path="res://inventory/items/large_hp.tres" type="Resource" id=18]
+[ext_resource path="res://minimap/room.tscn" type="PackedScene" id=19]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 85, 141, 86, 48, 742, 55, 734, 142, 1419, 59, 1420, -31, 1922, -28, 1920, 63 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ) ]
+outlines = [ PoolVector2Array( 85, 141, 86, 48, 742, 55, 734, 142 ), PoolVector2Array( 1419, 59, 1420, -31, 1922, -28, 1920, 63 ) ]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 816, -32, 1304, -32, 1295, 34, 1217, 104, 818, 102, 2061, -80, 2062, 61, 1404, 62, 1405, -77, 1333, -75, 1402, -76, 1402, 62, 1382, 58, 1342, 23, 1333, -35, 1295, 27, 1301, -30, 1798, 229, 1798, 275, 1734, 270, 1774, 228, 2061, 66, 2065, 221, 2024, 222, 1975, 203, 1641, 179, 1725, 181, 1656, 270, 1609, 226, 1574, 223, 1572, 71, 1639, 169, 1817, 172, 1848, 203, 2005, 238, 1976, 214, 808, 44, 812, 100, 764, 98, 757, 44, 580, 141, 578, 47, 578, 6, 757, 5, 721, 139 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 9, 10, 11, 12, 13, 14 ), PoolIntArray( 13, 15, 16, 14 ), PoolIntArray( 17, 18, 19, 20 ), PoolIntArray( 21, 22, 23, 24 ), PoolIntArray( 25, 26, 20, 19, 27, 28 ), PoolIntArray( 25, 28, 29, 30, 31 ), PoolIntArray( 31, 30, 21, 32 ), PoolIntArray( 33, 32, 21, 24 ), PoolIntArray( 24, 23, 34, 35 ), PoolIntArray( 36, 37, 38, 39 ), PoolIntArray( 40, 41, 42, 43, 39, 44 ), PoolIntArray( 39, 38, 44 ) ]
+outlines = [ PoolVector2Array( 816, -32, 1304, -32, 1295, 34, 1217, 104, 818, 102 ), PoolVector2Array( 1405, -77, 1404, 62, 2062, 61, 2061, -80 ), PoolVector2Array( 1402, -76, 1333, -75, 1333, -35, 1301, -30, 1295, 27, 1342, 23, 1382, 58, 1402, 62 ), PoolVector2Array( 2061, 66, 1572, 71, 1574, 223, 1609, 226, 1656, 270, 1734, 270, 1798, 275, 1798, 229, 1774, 228, 1725, 181, 1641, 179, 1639, 169, 1817, 172, 1848, 203, 1975, 203, 1976, 214, 2005, 238, 2024, 222, 2065, 221 ), PoolVector2Array( 812, 100, 808, 44, 757, 44, 757, 5, 578, 6, 578, 47, 580, 141, 721, 139, 764, 98 ) ]
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -8, 104, 0, 0, 0, 0, 48, 104, 0, 0, 0, 0, 88, 144, 0, 0, 0, 0, 704, 144, 0, 0, 0, 0, 768, 104, 0, 0, 0, 0, 1224, 104, 0, 0, 0, 0, 1312, 24, 0, 0, 0, 0, 1344, 24, 0, 0, 0, 0, 1392, 64, 0, 0, 0, 0, 1912, 64, 0, 0, 0, 0, 1912, 88, 0, 0, 0, 0, 1576, 88, 0, 0, 0, 0, 1576, 216, 0, 0, 0, 0, 1656, 264, 0, 0, 0, 0, 1736, 264, 0, 0, 0, 0, 1736, 280, 0, 0, 0, 0, 1576, 280, 0, 0, 0, 0, 1576, 408, 0, 0, 0, 0, 1608, 408, 0, 0, 0, 0, 1656, 456, 0, 0, 0, 0, 1736, 456, 0, 0, 0, 0, 1736, 472, 0, 0, 0, 0, 1640, 472, 0, 0, 0, 0, 1600, 432, 0, 0, 0, 0, 1576, 432, 0, 0, 0, 0, 1576, 520, 0, 0, 0, 0, 1544, 520, 0, 0, 0, 0, 1544, 568, 0, 0, 0, 0, 1704, 568, 0, 0, 0, 0, 1768, 504, 0, 0, 0, 0, 1800, 504, 0, 0, 0, 0, 1800, 376, 0, 0, 0, 0, 1640, 376, 0, 0, 0, 0, 1640, 360, 0, 0, 0, 0, 1720, 360, 0, 0, 0, 0, 1768, 312, 0, 0, 0, 0, 1800, 312, 0, 0, 0, 0, 1800, 232, 0, 0, 0, 0, 1768, 232, 0, 0, 0, 0, 1720, 184, 0, 0, 0, 0, 1640, 184, 0, 0, 0, 0, 1640, 168, 0, 0, 0, 0, 1816, 168, 0, 0, 0, 0, 1848, 200, 0, 0, 0, 0, 1976, 200, 0, 0, 0, 0, 1976, 216, 0, 0, 0, 0, 1864, 216, 0, 0, 0, 0, 1864, 232, 0, 0, 0, 0, 1832, 232, 0, 0, 0, 0, 1832, 312, 0, 0, 0, 0, 1864, 312, 0, 0, 0, 0, 1912, 360, 0, 0, 0, 0, 1992, 360, 0, 0, 0, 0, 1992, 376, 0, 0, 0, 0, 1832, 376, 0, 0, 0, 0, 1832, 504, 0, 0, 0, 0, 1880, 504, 0, 0, 0, 0, 1896, 520, 0, 0, 0, 0, 1992, 520, 0, 0, 0, 0, 2032, 480, 0, 0, 0, 0, 2072, 480, 0, 0, 0, 0, 2120, 480, 0, 0, 0, 0, 2120, 520, 0, 0, 0, 0, 2264, 520, 0, 0, 0, 0, 2272, 392, 0, 0, 0, 0, 2112, 392, 0, 0, 0, 0, 2112, 432, 0, 0, 0, 0, 2032, 432, 0, 0, 0, 0, 1992, 472, 0, 0, 0, 0, 1896, 472, 0, 0, 0, 0, 1896, 456, 0, 0, 0, 0, 1976, 456, 0, 0, 0, 0, 2024, 408, 0, 0, 0, 0, 2056, 408, 0, 0, 0, 0, 2056, 280, 0, 0, 0, 0, 1896, 280, 0, 0, 0, 0, 1896, 264, 0, 0, 0, 0, 1976, 264, 0, 0, 0, 0, 2024, 216, 0, 0, 0, 0, 2056, 216, 0, 0, 0, 0, 2056, 88, 0, 0, 0, 0, 1984, 88, 0, 0, 0, 0, 1984, 64, 0, 0, 0, 0, 2056, 64, 0, 0, 0, 0, 2056, -72, 0, 0, 0, 0, 1336, -72, 0, 0, 0, 0, 1336, -32, 0, 0, 0, 0, 816, -32, 0, 0, 0, 0, 816, 48, 0, 0, 0, 0, 752, 48, 0, 0, 0, 0, 752, 8, 0, 0, 0, 0, 584, 8, 0, 0, 0, 0, 584, 48, 0, 0, 0, 0, 472, 48, 0, 0, 0, 0, 472, 8, 0, 0, 0, 0, 328, 8, 0, 0, 0, 0, 328, 48, 0, 0, 0, 0, 216, 48, 0, 0, 0, 0, 216, 8, 0, 0, 0, 0, 48, 8, 0, 0, 0, 0, 48, 40, 0, 0, 0, 0, -8, 40, 0, 0, 0, 0, -8, 104 )
+}
+
+[node name="Scene" instance=ExtResource( 1 )]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NavGround" index="0"]
+visible = false
+navpoly = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="SimplePatroller" parent="NavGround" index="1" instance=ExtResource( 10 )]
+position = Vector2( 397, 113 )
+uuid = "045a0e14-2bab-4cb1-a22e-1f1bf79b9deb"
+hp = 20.0
+damage = 25.0
+dropped_item = ExtResource( 4 )
+
+[node name="SmartEnemy" parent="NavGround" index="2" instance=ExtResource( 16 )]
+position = Vector2( 1770, 31 )
+uuid = "100dc6dc-caa8-4810-ae5e-37631dca68dc"
+hp = 40.0
+damage = 30.0
+dropped_item = ExtResource( 8 )
+
+[node name="Left" parent="NavGround/SmartEnemy" index="6"]
+position = Vector2( -162, 1 )
+
+[node name="Right" parent="NavGround/SmartEnemy" index="7"]
+position = Vector2( 126, 1 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NavAir" index="0"]
+visible = false
+navpoly = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="TrackerFlyer" parent="NavAir" index="1" instance=ExtResource( 11 )]
+position = Vector2( 1054, 47 )
+uuid = "074a202e-a90f-40b9-bba6-144cead14095"
+hp = 18.0
+damage = 20.0
+dropped_item = ExtResource( 3 )
+
+[node name="TrackerFlyer2" parent="NavAir" index="2" instance=ExtResource( 11 )]
+position = Vector2( 1512, -19 )
+uuid = "862cde79-2d2d-4a82-8ce9-4745b6ecf9c8"
+hp = 10.0
+damage = 15.0
+dropped_item = ExtResource( 15 )
+
+[node name="TrackerFlyer3" parent="NavAir" index="3" instance=ExtResource( 11 )]
+position = Vector2( 1989, 15 )
+uuid = "767d0173-f264-4e3f-aeb9-9693552f65f6"
+hp = 10.0
+damage = 25.0
+dropped_item = ExtResource( 18 )
+
+[node name="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource( 17 )
+volume_db = -30.0
+
+[node name="SceneChangeZone" parent="." index="5" instance=ExtResource( 2 )]
+position = Vector2( 37, 73 )
+scene_path = "res://levels/level2.tscn"
+other_id = 1
+facing = 1.0
+
+[node name="PlayerPos" parent="SceneChangeZone" index="1"]
+position = Vector2( 35, 0 )
+
+[node name="NPC" parent="." index="6" instance=ExtResource( 13 )]
+position = Vector2( 1327, 18 )
+dialogue = ExtResource( 14 )
+
+[node name="AnimatedSprite" parent="NPC/Position2D" index="0"]
+frames = ExtResource( 12 )
+offset = Vector2( 0, -18 )
+
+[node name="TileMap" parent="." index="7"]
+tile_data = PoolIntArray( -720732, 48, 0, -393118, 43, 0, -65534, 49, 0, 590019, 40, 0, 3080451, 29, 0 )
+
+[node name="SceneChangeZone2" parent="." index="8" instance=ExtResource( 2 )]
+position = Vector2( 1575, 545 )
+scene_path = "res://levels/level4.tscn"
+my_id = 1
+facing = 1.0
+
+[node name="PlayerPos" parent="SceneChangeZone2" index="1"]
+position = Vector2( 28, -13 )
+
+[node name="Item" parent="." index="9" instance=ExtResource( 9 )]
+position = Vector2( 788, 84 )
+item_resource = ExtResource( 7 )
+uuid = "33e81d97-04ec-494e-8e7a-70fb1798e3c8"
+
+[node name="Item2" parent="." index="10" instance=ExtResource( 9 )]
+position = Vector2( 2190, 507 )
+item_resource = ExtResource( 5 )
+uuid = "e33750b3-5b1f-47bb-aeaa-fe9e5543ea0f"
+
+[node name="Item3" parent="." index="11" instance=ExtResource( 9 )]
+position = Vector2( 2038, 43 )
+item_resource = ExtResource( 6 )
+uuid = "1814466f-1d1b-4a91-b80e-7227d76c38ff"
+
+[node name="Room" parent="." index="12" instance=ExtResource( 19 )]
+visible = false
+curve = SubResource( 3 )
+
+[editable path="NavGround/SmartEnemy"]
+[editable path="SceneChangeZone"]
+[editable path="NPC"]
+[editable path="SceneChangeZone2"]

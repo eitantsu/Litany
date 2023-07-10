@@ -1,0 +1,159 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://enemy/simple_tree.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemy/simple_patroller.gd" type="Script" id=2]
+[ext_resource path="res://inventory/item.tscn" type="PackedScene" id=6]
+[ext_resource path="res://other/damager.gd" type="Script" id=8]
+[ext_resource path="res://enemy/animations/zombie.png" type="Texture" id=9]
+[ext_resource path="res://global/player_runtime_data.tres" type="Resource" id=10]
+[ext_resource path="res://enemy/audio/STRM_E_EN_ZONBIE_V07.wav" type="AudioStream" id=11]
+[ext_resource path="res://enemy/audio/STRM_E_EN_ZONBIE_V06.wav" type="AudioStream" id=12]
+[ext_resource path="res://ui/hp_over.png" type="Texture" id=13]
+[ext_resource path="res://ui/hp_under.png" type="Texture" id=14]
+[ext_resource path="res://ui/hp.png" type="Texture" id=15]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 11.0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 128, 64 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 12, 15.5 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "default"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 6.0
+height = 4.0
+
+[node name="SimplePatroller" type="KinematicBody2D" groups=["Persist", "enemies"]]
+z_index = -1
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 2 )
+hp_bar = NodePath("HPBar")
+damage_area = NodePath("DamageArea")
+distance_area = NodePath("PlayerDistanceArea")
+timer = NodePath("Timer")
+item_scene = ExtResource( 6 )
+player_data = ExtResource( 10 )
+anim_p = NodePath("AnimationPlayer")
+damage_on_collsiion = true
+damager = NodePath("Damager")
+speed = 130.0
+left = NodePath("Left")
+right = NodePath("Right")
+top = NodePath("TopJumpArea")
+hit = [ ExtResource( 11 ) ]
+dead = [ ExtResource( 12 ) ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="BehaviourTree" parent="." instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+
+[node name="HPBar" type="TextureProgress" parent="."]
+margin_left = -25.0
+margin_top = -35.0
+margin_right = 25.0
+margin_bottom = -25.0
+value = 100.0
+texture_under = ExtResource( 14 )
+texture_over = ExtResource( 13 )
+texture_progress = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource( 3 )
+
+[node name="PlayerDistanceArea" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDistanceArea"]
+shape = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Left" type="Position2D" parent="."]
+position = Vector2( -100, 0 )
+
+[node name="Right" type="Position2D" parent="."]
+position = Vector2( 100, 0 )
+
+[node name="Damager" type="Area2D" parent="."]
+position = Vector2( 0, 1 )
+collision_layer = 16
+script = ExtResource( 8 )
+damage = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damager"]
+position = Vector2( 1, 3.5 )
+shape = SubResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/RESET = SubResource( 8 )
+anims/default = SubResource( 7 )
+
+[node name="Position2D" type="Position2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Position2D"]
+texture = ExtResource( 9 )
+hframes = 12
+
+[node name="TopJumpArea" type="Area2D" parent="."]
+position = Vector2( 0, -17 )
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopJumpArea"]
+rotation = 1.5708
+shape = SubResource( 9 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -27.0
+bus = "Global"
+
+[connection signal="body_entered" from="TopJumpArea" to="." method="_on_TopJumpArea_body_entered"]

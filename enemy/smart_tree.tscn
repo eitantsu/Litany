@@ -1,0 +1,320 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://enemy/sp_check_target.gd" type="Script" id=1]
+[ext_resource path="res://enemy/tf_player_detected.gd" type="Script" id=2]
+[ext_resource path="res://behaviour_tree/inverter.gd" type="Script" id=3]
+[ext_resource path="res://enemy/sp_move.gd" type="Script" id=4]
+[ext_resource path="res://behaviour_tree/behaviour_tree.gd" type="Script" id=5]
+[ext_resource path="res://behaviour_tree/sequence.gd" type="Script" id=6]
+[ext_resource path="res://enemy/se_melee_attack.gd" type="Script" id=7]
+[ext_resource path="res://behaviour_tree/selector.gd" type="Script" id=8]
+[ext_resource path="res://enemy/se_player_in_range.gd" type="Script" id=9]
+[ext_resource path="res://enemy/se_shoot.gd" type="Script" id=10]
+[ext_resource path="res://enemy/se_facing_player.gd" type="Script" id=11]
+[ext_resource path="res://enemy/se_wait.gd" type="Script" id=12]
+[ext_resource path="res://enemy/se_player_close.gd" type="Script" id=13]
+
+[node name="BehaviourTree" type="Label"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "BehaviourTree"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector" type="Label" parent="."]
+margin_left = 19.0
+margin_top = 48.0
+margin_right = 71.0
+margin_bottom = 62.0
+text = "Selector"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector" type="Label" parent="Selector"]
+margin_left = -234.0
+margin_top = 60.0
+margin_right = -182.0
+margin_bottom = 74.0
+text = "Selector"
+script = ExtResource( 8 )
+
+[node name="Parallel_Sequence" type="Label" parent="Selector/Selector"]
+margin_left = -550.0
+margin_top = 89.0
+margin_right = -435.0
+margin_bottom = 103.0
+text = "Parallel_Sequence"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inverter" type="Label" parent="Selector/Selector/Parallel_Sequence"]
+margin_left = -195.0
+margin_top = 54.0
+margin_right = -144.0
+margin_bottom = 68.0
+text = "Inverter"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerDetected" type="Label" parent="Selector/Selector/Parallel_Sequence/Inverter"]
+margin_left = -26.0
+margin_top = 35.0
+margin_right = 14.0
+margin_bottom = 49.0
+text = "PlayerDetected"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_check_target_point" type="Label" parent="Selector/Selector/Parallel_Sequence"]
+margin_left = -42.0
+margin_top = 73.0
+margin_right = 98.0
+margin_bottom = 87.0
+text = "se_check_target_point"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_move_to_point" type="Label" parent="Selector/Selector/Parallel_Sequence"]
+margin_left = 124.0
+margin_top = 80.0
+margin_right = 239.0
+margin_bottom = 94.0
+text = "se_move_to_point"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Parallel_Sequence2" type="Label" parent="Selector/Selector"]
+margin_left = -57.0
+margin_top = 79.0
+margin_right = 66.0
+margin_bottom = 93.0
+text = "Parallel_Sequence2"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerDetected" type="Label" parent="Selector/Selector/Parallel_Sequence2"]
+margin_left = -221.0
+margin_top = 89.0
+margin_right = -123.0
+margin_bottom = 103.0
+text = "PlayerDetected"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inverter" type="Label" parent="Selector/Selector/Parallel_Sequence2"]
+margin_left = -101.0
+margin_top = 74.0
+margin_right = -50.0
+margin_bottom = 88.0
+text = "Inverter"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_player_in_range2" type="Label" parent="Selector/Selector/Parallel_Sequence2/Inverter"]
+margin_left = -60.0
+margin_top = 66.0
+margin_right = 67.0
+margin_bottom = 80.0
+text = "se_player_in_range2"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_check_target_point" type="Label" parent="Selector/Selector/Parallel_Sequence2"]
+margin_left = -42.0
+margin_top = 73.0
+margin_right = 98.0
+margin_bottom = 87.0
+text = "se_check_target_point"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_move_to_point" type="Label" parent="Selector/Selector/Parallel_Sequence2"]
+margin_left = 124.0
+margin_top = 80.0
+margin_right = 239.0
+margin_bottom = 94.0
+text = "se_move_to_point"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sequence2" type="Label" parent="Selector"]
+margin_left = 41.0
+margin_top = 38.0
+margin_right = 111.0
+margin_bottom = 52.0
+text = "Sequence2"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerDetected" type="Label" parent="Selector/Sequence2"]
+margin_left = -61.0
+margin_top = 46.0
+margin_right = 37.0
+margin_bottom = 60.0
+text = "PlayerDetected"
+script = ExtResource( 2 )
+
+[node name="Selector" type="Label" parent="Selector/Sequence2"]
+margin_left = 85.0
+margin_top = 43.0
+margin_right = 137.0
+margin_bottom = 57.0
+text = "Selector"
+script = ExtResource( 8 )
+
+[node name="Sequence" type="Label" parent="Selector/Sequence2/Selector"]
+margin_left = -57.0
+margin_top = 75.0
+margin_right = 5.0
+margin_bottom = 89.0
+text = "Sequence"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_player_close" type="Label" parent="Selector/Sequence2/Selector/Sequence"]
+margin_left = -104.0
+margin_top = 64.0
+margin_right = -4.0
+margin_bottom = 78.0
+text = "se_player_close"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_melee_attack" type="Label" parent="Selector/Sequence2/Selector/Sequence"]
+margin_left = 9.0
+margin_top = 63.0
+margin_right = 115.0
+margin_bottom = 77.0
+text = "se_melee_attack"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_wait" type="Label" parent="Selector/Sequence2/Selector/Sequence"]
+margin_left = 134.0
+margin_top = 64.0
+margin_right = 181.0
+margin_bottom = 78.0
+text = "se_wait"
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sequence2" type="Label" parent="Selector/Sequence2/Selector"]
+margin_left = 186.0
+margin_top = 50.0
+margin_right = 256.0
+margin_bottom = 64.0
+text = "Sequence2"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inverter" type="Label" parent="Selector/Sequence2/Selector/Sequence2"]
+margin_left = -12.0
+margin_top = 61.0
+margin_right = 39.0
+margin_bottom = 75.0
+text = "Inverter"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_player_close" type="Label" parent="Selector/Sequence2/Selector/Sequence2/Inverter"]
+margin_left = -27.0
+margin_top = 50.0
+margin_right = 73.0
+margin_bottom = 64.0
+text = "se_player_close"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sequence" type="Label" parent="Selector/Sequence2/Selector/Sequence2"]
+margin_left = 311.0
+margin_top = 65.0
+margin_right = 373.0
+margin_bottom = 79.0
+text = "Sequence"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_facing_player" type="Label" parent="Selector/Sequence2/Selector/Sequence2/Sequence"]
+margin_left = -217.0
+margin_top = 47.0
+margin_right = -114.0
+margin_bottom = 61.0
+text = "se_facing_player"
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_player_in_range" type="Label" parent="Selector/Sequence2/Selector/Sequence2/Sequence"]
+margin_left = -74.0
+margin_top = 48.0
+margin_right = 45.0
+margin_bottom = 62.0
+text = "se_player_in_range"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_shoot" type="Label" parent="Selector/Sequence2/Selector/Sequence2/Sequence"]
+margin_left = 59.0
+margin_top = 48.0
+margin_right = 116.0
+margin_bottom = 62.0
+text = "se_shoot"
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="se_wait" type="Label" parent="Selector/Sequence2/Selector/Sequence2/Sequence"]
+margin_left = 161.0
+margin_top = 51.0
+margin_right = 208.0
+margin_bottom = 65.0
+text = "se_wait"
+script = ExtResource( 12 )

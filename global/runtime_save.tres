@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Resource
+
+class_name ItemResource
+
+export(String) var iname
+export(Texture) var texture
+export(GlobalVariables.ItemTypes) var type
+export(Dictionary) var properties
+"
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/pp.png-b4e402880c9705297eb6c3a3f944fe7a.stex"
+
+[sub_resource type="Resource" id=5]
+script = SubResource( 1 )
+iname = "helmet bla"
+texture = SubResource( 2 )
+type = 0
+properties = {
+"defense": 22.0,
+"eq_type": 1
+}
+
+[resource]
+script = SubResource( 5 )

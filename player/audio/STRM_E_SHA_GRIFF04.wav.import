@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/STRM_E_SHA_GRIFF04.wav-8a0dbc6dc8d517614619cd01e915dd46.sample"
+
+[deps]
+
+source_file="res://player/audio/STRM_E_SHA_GRIFF04.wav"
+dest_files=[ "res://.import/STRM_E_SHA_GRIFF04.wav-8a0dbc6dc8d517614619cd01e915dd46.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

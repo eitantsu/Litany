@@ -1,0 +1,238 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://dialogue/dialogue_system.gd" type="Script" id=1]
+[ext_resource path="res://common.theme" type="Theme" id=3]
+[ext_resource path="res://menus/SWAV_17.swav.wav" type="AudioStream" id=4]
+
+[node name="DialogueSystem" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+player_texture = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/AspectRatioContainer/ReferenceRect/PlayerTexture")
+npc_texture = NodePath("VBoxContainer/MarginContainer2/HBoxContainer/AspectRatioContainer2/ReferenceRect2/NPCTexture")
+label = NodePath("VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer/VBoxContainer/Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_left = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+margin_left = 5.0
+margin_right = 251.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_right = 79.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ReferenceRect" type="ReferenceRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/AspectRatioContainer"]
+margin_top = 7.5
+margin_right = 79.0
+margin_bottom = 86.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+border_color = Color( 0.152941, 0.121569, 0.121569, 1 )
+border_width = 2.0
+editor_only = false
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/AspectRatioContainer/ReferenceRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0627451, 0.0588235, 0.0588235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerTexture" type="TextureRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/AspectRatioContainer/ReferenceRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 83.0
+margin_right = 162.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 166.0
+margin_right = 246.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/AspectRatioContainer2"]
+margin_top = 7.0
+margin_right = 80.0
+margin_bottom = 87.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+border_color = Color( 0.152941, 0.121569, 0.121569, 1 )
+border_width = 2.0
+editor_only = false
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/AspectRatioContainer2/ReferenceRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0627451, 0.0588235, 0.0588235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NPCTexture" type="TextureRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/AspectRatioContainer2/ReferenceRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 98.0
+margin_right = 256.0
+margin_bottom = 192.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="VBoxContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 236.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+border_color = Color( 0.152941, 0.121569, 0.121569, 1 )
+border_width = 3.4
+editor_only = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/ReferenceRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/ReferenceRect/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 211.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer/VBoxContainer"]
+margin_right = 206.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 3 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer/VBoxContainer"]
+margin_top = 23.0
+margin_right = 206.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 101.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Skip" type="Button" parent="VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_right = 44.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 20 )
+theme = ExtResource( 3 )
+text = "Skip"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 105.0
+margin_right = 206.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Next" type="Button" parent="VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+margin_left = 54.0
+margin_right = 101.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 20 )
+theme = ExtResource( 3 )
+text = "Next"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -30.0
+bus = "Global"
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Skip" to="." method="_on_Skip_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/ReferenceRect/Panel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Next" to="." method="_on_Next_pressed"]

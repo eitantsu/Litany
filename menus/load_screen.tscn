@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://menus/load_screen.gd" type="Script" id=1]
+[ext_resource path="res://common.theme" type="Theme" id=2]
+[ext_resource path="res://menus/SWAV_17.swav.wav" type="AudioStream" id=3]
+
+[node name="LoadScreen" type="Control"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+load_pop = NodePath("CenterContainer/LoadPopup")
+back = NodePath("CenterContainer/VBoxContainer/Back")
+slots = NodePath("CenterContainer/VBoxContainer/SlotList")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -96.0
+margin_right = 128.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadPopup" type="ConfirmationDialog" parent="CenterContainer"]
+margin_left = 28.0
+margin_top = 61.0
+margin_right = 228.0
+margin_bottom = 131.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+popup_exclusive = true
+window_title = "Load"
+dialog_text = "Load this save file?"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 78.0
+margin_top = 56.0
+margin_right = 178.0
+margin_bottom = 135.0
+
+[node name="SlotList" type="ItemList" parent="CenterContainer/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 100, 50 )
+focus_neighbour_bottom = NodePath("../Back")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+items = [ "Slot 1", null, false, "Slot 2", null, false, "Slot 3", null, false ]
+auto_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_left = 26.0
+margin_top = 82.0
+margin_right = 73.0
+margin_bottom = 107.0
+rect_min_size = Vector2( 30, 25 )
+focus_neighbour_top = NodePath("../SlotList")
+size_flags_horizontal = 6
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -30.0
+bus = "Global"
+
+[connection signal="visibility_changed" from="." to="." method="_on_LoadScreen_visibility_changed"]
+[connection signal="about_to_show" from="CenterContainer/LoadPopup" to="." method="_on_LoadPopup_about_to_show"]
+[connection signal="confirmed" from="CenterContainer/LoadPopup" to="." method="_on_load_confirmed"]
+[connection signal="popup_hide" from="CenterContainer/LoadPopup" to="." method="_on_LoadPopup_popup_hide"]
+[connection signal="gui_input" from="CenterContainer/VBoxContainer/SlotList" to="." method="_on_SlotList_gui_input"]
+[connection signal="item_activated" from="CenterContainer/VBoxContainer/SlotList" to="." method="_on_Slot_activated"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Back" to="." method="_on_Back_pressed"]

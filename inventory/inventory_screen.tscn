@@ -1,0 +1,303 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://player/animations/f_fsha00_palette_021FFDA0-00.png" type="Texture" id=1]
+[ext_resource path="res://global/player_runtime_data.tres" type="Resource" id=2]
+[ext_resource path="res://inventory/inventory_screen.gd" type="Script" id=3]
+[ext_resource path="res://inventory/def.png" type="Texture" id=4]
+[ext_resource path="res://global/player_inventory.tres" type="Resource" id=5]
+[ext_resource path="res://ui/hp.png" type="Texture" id=6]
+[ext_resource path="res://ui/hp_over.png" type="Texture" id=7]
+[ext_resource path="res://ui/hp_under.png" type="Texture" id=8]
+[ext_resource path="res://common.theme" type="Theme" id=9]
+[ext_resource path="res://menus/SWAV_17.swav.wav" type="AudioStream" id=10]
+[ext_resource path="res://fonts/Alice-Regular.ttf" type="DynamicFontData" id=11]
+
+[sub_resource type="DynamicFont" id=5]
+size = 12
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 11
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 10
+font_data = ExtResource( 11 )
+
+[sub_resource type="InputEventAction" id=1]
+action = "open_inventory"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[node name="InventroyScreen" type="Popup" groups=["Persist"]]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+player_runtime_data = ExtResource( 2 )
+inventory_resource = ExtResource( 5 )
+hp_bar = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/AspectRatioContainer2/HPBar")
+strength_l = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/Strength")
+defense_l = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/Defense")
+item_options = NodePath("CenterContainer/ItemOptions")
+items_list = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Items")
+exit = NodePath("CenterContainer/VBoxContainer/Exit")
+accessory = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Accessory")
+helmet = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Helmet")
+armour = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Armour")
+boots = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Boots")
+default_texture = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemOptions" type="PopupMenu" parent="CenterContainer"]
+margin_left = 97.0
+margin_top = 70.0
+margin_right = 159.0
+margin_bottom = 122.0
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 5 )
+items = [ "Use", null, 0, false, false, 0, 0, null, "", false, "Discard", null, 0, false, false, 1, 0, null, "", false ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 29.0
+margin_top = 31.0
+margin_right = 227.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 198.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 50.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/AspectRatioContainer"]
+margin_left = 2.5
+margin_right = 47.5
+margin_bottom = 45.0
+rect_min_size = Vector2( 45, 45 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+border_color = Color( 0.152941, 0.121569, 0.121569, 1 )
+border_width = 2.0
+editor_only = false
+
+[node name="PlayerTexture" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/AspectRatioContainer/ReferenceRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 49.0
+margin_right = 50.0
+margin_bottom = 66.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HPBar" type="TextureProgress" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/AspectRatioContainer2"]
+margin_right = 50.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 50, 10 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+value = 100.0
+texture_under = ExtResource( 8 )
+texture_over = ExtResource( 7 )
+texture_progress = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Strength" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 70.0
+margin_right = 50.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 30, 10 )
+size_flags_horizontal = 3
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Defense" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 50.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 30, 10 )
+size_flags_horizontal = 3
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 54.0
+margin_right = 94.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Accessory" type="MenuButton" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 40.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 40, 10 )
+focus_neighbour_right = NodePath("../../Items")
+focus_neighbour_bottom = NodePath("../Helmet")
+focus_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 4 )
+items = [ "Unequip", null, 0, false, false, 0, 0, null, "", false, "Discard", null, 0, false, false, 1, 0, null, "", false ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Helmet" type="MenuButton" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 23.0
+margin_right = 40.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 40, 10 )
+focus_neighbour_top = NodePath("../Accessory")
+focus_neighbour_right = NodePath("../../Items")
+focus_neighbour_bottom = NodePath("../Armour")
+focus_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 4 )
+items = [ "Unequip", null, 0, false, false, 0, 0, null, "", false, "Discard", null, 0, false, false, 1, 0, null, "", false ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Armour" type="MenuButton" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 46.0
+margin_right = 40.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 40, 10 )
+focus_neighbour_top = NodePath("../Helmet")
+focus_neighbour_right = NodePath("../../Items")
+focus_neighbour_bottom = NodePath("../Boots")
+focus_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 4 )
+items = [ "Unequip", null, 0, false, false, 0, 0, null, "", false, "Discard", null, 0, false, false, 1, 0, null, "", false ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Boots" type="MenuButton" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 69.0
+margin_right = 40.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 40, 10 )
+focus_neighbour_top = NodePath("../Armour")
+focus_neighbour_right = NodePath("../../Items")
+focus_neighbour_bottom = NodePath("../../../Exit")
+focus_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 4 )
+items = [ "Unequip", null, 0, false, false, 0, 0, null, "", false, "Discard", null, 0, false, false, 1, 0, null, "", false ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" type="ItemList" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 98.0
+margin_right = 198.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+focus_neighbour_left = NodePath("../VBoxContainer2/Accessory")
+focus_neighbour_bottom = NodePath("../../Exit")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 3 )
+auto_height = true
+icon_scale = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_left = 78.0
+margin_top = 104.0
+margin_right = 120.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 30, 20 )
+focus_neighbour_top = NodePath("../HBoxContainer/VBoxContainer2/Boots")
+focus_neighbour_right = NodePath("../HBoxContainer/Items")
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme = ExtResource( 9 )
+shortcut_in_tooltip = false
+shortcut = SubResource( 2 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -30.0
+bus = "Global"
+
+[connection signal="hide" from="." to="." method="_on_InventroyScreen_hide"]
+[connection signal="visibility_changed" from="." to="." method="_on_InventroyScreen_visibility_changed"]
+[connection signal="about_to_show" from="CenterContainer/ItemOptions" to="." method="_on_ItemOptions_about_to_show"]
+[connection signal="index_pressed" from="CenterContainer/ItemOptions" to="." method="_on_ItemOptions_index_pressed"]
+[connection signal="popup_hide" from="CenterContainer/ItemOptions" to="." method="_on_ItemOptions_popup_hide"]
+[connection signal="gui_input" from="CenterContainer/VBoxContainer/HBoxContainer/Items" to="." method="_on_Items_gui_input"]
+[connection signal="item_activated" from="CenterContainer/VBoxContainer/HBoxContainer/Items" to="." method="_on_Items_item_activated"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

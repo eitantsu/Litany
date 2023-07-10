@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://enemy/sp_check_target.gd" type="Script" id=1]
+[ext_resource path="res://enemy/sp_move.gd" type="Script" id=2]
+[ext_resource path="res://behaviour_tree/behaviour_tree.gd" type="Script" id=3]
+[ext_resource path="res://behaviour_tree/sequence.gd" type="Script" id=4]
+
+[node name="BehaviourTree" type="Label"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "BehaviourTree"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sequence" type="Label" parent="."]
+margin_top = 100.0
+margin_right = 62.0
+margin_bottom = 114.0
+text = "Sequence"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Move" type="Label" parent="Sequence"]
+margin_left = -40.0
+margin_top = 104.0
+margin_bottom = 118.0
+text = "Move"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckTarget" type="Label" parent="Sequence"]
+margin_left = 18.0
+margin_top = 106.0
+margin_right = 95.0
+margin_bottom = 120.0
+text = "CheckTarget"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

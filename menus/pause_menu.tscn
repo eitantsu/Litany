@@ -1,0 +1,179 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://menus/pause_menu.gd" type="Script" id=1]
+[ext_resource path="res://menus/SWAV_17.swav.wav" type="AudioStream" id=2]
+[ext_resource path="res://common.theme" type="Theme" id=3]
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+main_menu_scene_path = "res://menus/main_menu.tscn"
+popup = NodePath("CenterContainer/PausePopup")
+resume = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Resume")
+save = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/Save")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -96.0
+margin_right = 128.0
+margin_bottom = 96.0
+
+[node name="PausePopup" type="ConfirmationDialog" parent="CenterContainer"]
+margin_left = 28.0
+margin_top = 61.0
+margin_right = 228.0
+margin_bottom = 131.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+popup_exclusive = true
+resizable = true
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 52.0
+margin_top = 11.0
+margin_right = 203.0
+margin_bottom = 181.0
+rect_min_size = Vector2( 70, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 151.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Resume" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 40.0
+margin_right = 110.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+focus_neighbour_bottom = NodePath("../../HBoxContainer2/Save")
+size_flags_horizontal = 0
+theme = ExtResource( 3 )
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 151.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Save" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 52.0
+margin_right = 98.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+focus_neighbour_top = NodePath("../../HBoxContainer/Resume")
+focus_neighbour_bottom = NodePath("../../HBoxContainer3/Load")
+theme = ExtResource( 3 )
+text = "Save"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 58.0
+margin_right = 151.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Load" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 52.0
+margin_right = 99.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+focus_neighbour_top = NodePath("../../HBoxContainer2/Save")
+focus_neighbour_bottom = NodePath("../../HBoxContainer4/Settings")
+theme = ExtResource( 3 )
+text = "Load"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 151.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 40.0
+margin_right = 111.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+focus_neighbour_top = NodePath("../../HBoxContainer3/Load")
+focus_neighbour_bottom = NodePath("../../HBoxContainer5/QuitToMainMenu")
+theme = ExtResource( 3 )
+text = "Settings"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 116.0
+margin_right = 151.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="QuitToMainMenu" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer5"]
+margin_right = 151.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+focus_neighbour_top = NodePath("../../HBoxContainer4/Settings")
+focus_neighbour_bottom = NodePath("../../HBoxContainer6/QuitGame")
+theme = ExtResource( 3 )
+text = "Quit to main menu"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 145.0
+margin_right = 151.0
+margin_bottom = 170.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="QuitGame" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer6"]
+margin_left = 30.0
+margin_right = 120.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+focus_neighbour_top = NodePath("../../HBoxContainer5/QuitToMainMenu")
+theme = ExtResource( 3 )
+text = "Quit Game"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -30.0
+bus = "Global"
+
+[connection signal="visibility_changed" from="." to="." method="_on_PauseMenu_visibility_changed"]
+[connection signal="about_to_show" from="CenterContainer/PausePopup" to="." method="_on_PausePopup_about_to_show"]
+[connection signal="confirmed" from="CenterContainer/PausePopup" to="." method="_on_PausePopup_confirmed"]
+[connection signal="popup_hide" from="CenterContainer/PausePopup" to="." method="_on_PausePopup_popup_hide"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/Load" to="." method="_on_Load_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer4/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer5/QuitToMainMenu" to="." method="_on_QuitToMainMenu_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer6/QuitGame" to="." method="_on_QuitGame_pressed"]

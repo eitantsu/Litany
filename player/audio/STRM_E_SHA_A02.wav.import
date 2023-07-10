@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/STRM_E_SHA_A02.wav-1b5eab7f33ba5b93b7ee17198970603f.sample"
+
+[deps]
+
+source_file="res://player/audio/STRM_E_SHA_A02.wav"
+dest_files=[ "res://.import/STRM_E_SHA_A02.wav-1b5eab7f33ba5b93b7ee17198970603f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

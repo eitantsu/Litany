@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/21-SUCCESSOROFFATE2.mp3-4c3764a9afb4a8918a8a9dee865858ee.mp3str"
+
+[deps]
+
+source_file="res://music/21-SUCCESSOROFFATE2.mp3"
+dest_files=[ "res://.import/21-SUCCESSOROFFATE2.mp3-4c3764a9afb4a8918a8a9dee865858ee.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
